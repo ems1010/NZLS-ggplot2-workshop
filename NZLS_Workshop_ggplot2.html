@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="Elena Sheard">
-  <title>Introduction to Data Visualisation</title>
+  <title>Introduction to Data Visualisation in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -389,8 +389,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/nzilbb-uc.svg" data-background-position="50% 5%" data-background-size="70%" class="quarto-title-block center">
-  <h1 class="title">Introduction to Data Visualisation</h1>
-  <p class="subtitle">NZLS Workshop Day</p>
+  <h1 class="title">Introduction to Data Visualisation in R</h1>
+  <p class="subtitle">NZLS Workshop Day, December 11 2024</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -424,8 +424,8 @@ Elena Sheard
 <ul>
 <li class="fragment">Go to https://github.com/ems1010/NZLS-ggplot2-workshop
 <ul>
-<li class="fragment"><pre><code>Fork (if you know how) OR</code></pre></li>
-<li class="fragment"><pre><code>Download as .zip folder `&lt;&gt; Code` button -\&gt; `Download ZIP`</code></pre></li>
+<li class="fragment">Fork (if you know how) OR</li>
+<li class="fragment">Download as .zip folder from the <code>&lt;&gt; Code</code> button -&gt; <code>Download ZIP</code></li>
 </ul></li>
 <li class="fragment">Unzip folder, open the file <strong>NZLS-ggplot2-workshop.Rproj</strong> in RStudio
 <ul>
@@ -469,10 +469,10 @@ Elena Sheard
 <section id="using-ggplot2" class="slide level2">
 <h2>Using ggplot2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">install.packages</span>(<span class="st">"RColorBrewer"</span>) </span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-4"><a href="#cb3-4"></a>qb_vowels <span class="ot">&lt;-</span><span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">'Data'</span>,<span class="st">'qb_vowels.rds'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="st">"here"</span>, <span class="st">"RColorBrewer"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>qb_vowels <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">'Data'</span>, <span class="st">'qb_vowels.rds'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li class="fragment">To use ggplot2, you need to:
@@ -555,7 +555,7 @@ Elena Sheard
 <section id="the-base-layer" class="slide level2">
 <h2>The Base Layer</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
@@ -563,9 +563,9 @@ Elena Sheard
 <h2>ggplot2: Mapping</h2>
 <ul>
 <li class="fragment">Depends on what kind of graph you are after, but for <em>most</em> you will want to add <strong>x and/or y axes</strong></li>
-<li class="fragment">Within <code>ggplot(data=qb_vowels)</code>, we need another function <code>aes()</code> within which you give the x and y axes so that:
+<li class="fragment">Within <code>ggplot(data = qb_vowels)</code>, we need another function <code>aes()</code> within which you give the x and y axes so that:
 <ul>
-<li class="fragment">ggplot(data=<em>dataframe</em>, aes(x=<em>column_a</em>, y=<em>column_b</em>)) </li>
+<li class="fragment"><code>ggplot(data = *dataframe*, aes(x = *column_a*, y = *column_b*))</code> </li>
 <li class="fragment">The names you give for ‘x’ and ‘y’ are the <strong>names of the columns in the dataframe you want to plot</strong></li>
 </ul></li>
 </ul>
@@ -573,7 +573,7 @@ Elena Sheard
 <section id="ggplot2-mapping-1" class="slide level2">
 <h2>ggplot2: Mapping</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F2_50,<span class="at">y=</span>F1_50))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
@@ -583,7 +583,7 @@ Elena Sheard
 <li class="fragment">We already have the basis for a scatterplot as we have <strong>two continuous variables</strong> on the x and y axes</li>
 <li class="fragment">To turn this into a scatterplot, add <code>+ geom_point()</code> to the previous code
 <ul>
-<li class="fragment">This tells ggplot2 that we want to build a scatter plot, with the specified x and y axes</li>
+<li class="fragment">This tells ggplot2 that we want to build a scatter plot (each data point represented by a ‘point’), with the specified x and y axes</li>
 </ul></li>
 <li class="fragment">When you add a new component to a graph, there must be a <code>+</code> connecting to the previous one</li>
 <li class="fragment">And voila!</li>
@@ -592,8 +592,8 @@ Elena Sheard
 <section id="basic-scatter-plot" class="slide level2">
 <h2>Basic Scatter plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F2_50,<span class="at">y=</span>F1_50))<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
@@ -614,9 +614,9 @@ Elena Sheard
 <section id="building-a-box-plot" class="slide level2">
 <h2>Building a box plot</h2>
 <ul>
-<li class="fragment">The basic <code>ggplot(data=, aes(x=,y=))</code> stays the same
+<li class="fragment">The basic <code>ggplot(data =, aes(x =,y =))</code> stays the same
 <ul>
-<li class="fragment">Instead of <code>+geom_point()</code> we add <code>+geom_boxplot()</code></li>
+<li class="fragment">Instead of <code>+ geom_point()</code> we add <code>+ geom_boxplot()</code></li>
 </ul></li>
 <li class="fragment">Box plots use:
 <ul>
@@ -628,8 +628,8 @@ Elena Sheard
 <section id="basic-box-plot" class="slide level2">
 <h2>Basic box plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>vowel,<span class="at">y=</span>F1_50))<span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> vowel, <span class="at">y =</span> F1_50)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
@@ -643,7 +643,7 @@ Elena Sheard
 <section id="building-a-density-plot" class="slide level2">
 <h2>Building a density plot</h2>
 <ul>
-<li class="fragment">The basic code is <code>ggplot(data=, aes(x=))</code>
+<li class="fragment">The basic code is <code>ggplot(data =, aes(x =))</code>
 <ul>
 <li class="fragment">This time we add <code>+geom_density()</code></li>
 </ul></li>
@@ -657,8 +657,8 @@ Elena Sheard
 <section id="basic-density-plot" class="slide level2">
 <h2>Basic density plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F1_50))<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F1_50)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
@@ -682,7 +682,7 @@ Elena Sheard
 <li class="fragment">Colour is a very easy way to add additional information</li>
 <li class="fragment">We map colour to variables within the <code>aes()</code> function, after we have put in the x and y axes
 <ul>
-<li class="fragment"><code>ggplot(data=data_frame, aes(x=columm_a,y=column_b,color=column_c))</code></li>
+<li class="fragment"><code>ggplot(data = data_frame, aes(x = columm_a,y = column_b, color = column_c))</code></li>
 </ul></li>
 <li class="fragment">The same principle applies to shape and linetype</li>
 </ul>
@@ -690,8 +690,8 @@ Elena Sheard
 <section id="scatter-plot-with-colour" class="slide level2">
 <h2>Scatter Plot with Colour</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F2_50,<span class="at">y=</span>F1_50, <span class="at">color=</span>vowel))<span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F2_50,<span class="at">y=</span>F1_50, <span class="at">color=</span>vowel))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
@@ -700,23 +700,23 @@ Elena Sheard
 <ul>
 <li class="fragment">If your graph has shapes with lines (like boxplots and density plots), you can:
 <ul>
-<li class="fragment">change the line colour with <code>color=column_c</code></li>
-<li class="fragment">change the colour inside the lines with <code>fill=column_d</code></li>
+<li class="fragment">change the line colour with <code>color = column_c</code></li>
+<li class="fragment">change the colour inside the lines with <code>fill = column_d</code></li>
 </ul></li>
 </ul>
 </section>
 <section id="boxplot-with-colour" class="slide level2">
 <h2>Boxplot with colour</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>, <span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">x =</span> vowel,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">y =</span> F1_50,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    <span class="at">fill =</span> participant_nz_ethnic,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    <span class="at">color =</span> participant_gender</span>
-<span id="cb10-8"><a href="#cb10-8"></a>  )) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>, <span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">x =</span> vowel,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">y =</span> F1_50,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">fill =</span> participant_nz_ethnic,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">color =</span> participant_gender</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  )) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="boxplot-with-colour-1" class="slide level2">
@@ -735,22 +735,24 @@ Elena Sheard
 <ul>
 <li class="fragment">The <code>+labs()</code> function lets you change the plot title, caption, x and y axes and the legend labels
 <ul>
-<li class="fragment"><code>labs(title="Plot Title",caption="Plot Caption",x="column_a",y="column_b", color="column_c",fill="column_d")</code></li>
+<li class="fragment"><code>labs(title = "Plot Title", caption = "Plot Caption",x = "column_a",y = "column_b", color = "column_c",fill = "column_d")</code></li>
 </ul></li>
 </ul>
 </section>
 <section id="changing-our-figure-title" class="slide level2">
 <h2>Changing our figure title</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="labels-and-titles-1" class="slide level2">
@@ -763,7 +765,7 @@ Elena Sheard
 <li class="fragment">Give your plot from Task 4 a new title!</li>
 <li class="fragment">Try and change the labels of the x and y axes too
 <ul>
-<li class="fragment">Previous plot code +<code>labs(title="Plot Title",caption="Plot Caption",x="column_a",y="column_b", color="column_c",fill="column_d")</code></li>
+<li class="fragment">Previous plot code +<code>labs(title = "Plot Title", caption = "Plot Caption",x = "column_a",y = "column_b", color = "column_c",fill = "column_d")</code></li>
 </ul></li>
 </ul>
 </section>
@@ -776,23 +778,25 @@ Elena Sheard
 </ul></li>
 <li class="fragment">Other options include:
 <ul>
-<li class="fragment"><code>+theme_bw()</code>, <code>+theme_light()</code>, <code>+theme_dark()</code>, <code>+theme_classic()</code></li>
+<li class="fragment"><code>+ theme_bw()</code>, <code>+ theme_light()</code>, <code>+ theme_dark()</code>, <code>+ theme_classic()</code></li>
 </ul></li>
 </ul>
 </section>
 <section id="chaning-our-theme" class="slide level2">
 <h2>Chaning our theme</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>  )<span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  )<span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">scale_x_reverse</span>() <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="themes-1" class="slide level2">
@@ -824,17 +828,19 @@ Elena Sheard
 <section id="move-our-legend" class="slide level2">
 <h2>Move our legend</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
-<span id="cb13-8"><a href="#cb13-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  )<span class="sc">+</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> vowel)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  )<span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="fu">scale_x_reverse</span>() <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="legends-positioning-1" class="slide level2">
@@ -846,27 +852,30 @@ Elena Sheard
 <ul>
 <li class="fragment">You can also alter the legend name and labels using:
 <ul>
-<li class="fragment"><code>scale_color_discrete(name="",labels=c("",""))</code> and</li>
-<li class="fragment"><code>scale_fill_discrete(name="",labels=c("",""))</code></li>
+<li class="fragment"><code>scale_color_discrete(name = " ", labels = c("",""))</code> and</li>
+<li class="fragment"><code>scale_fill_discrete(name = " ", labels = c("", ""))</code></li>
 </ul></li>
+<li class="fragment">If this is something you have to do repeatedly, it’s probably better to do some data processing before visualisation</li>
 </ul>
 </section>
 <section id="altering-our-legend" class="slide level2">
 <h2>Altering our legend</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> participant_gender)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
-<span id="cb14-7"><a href="#cb14-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
-<span id="cb14-8"><a href="#cb14-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>  )<span class="sc">+</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">"Gender"</span>, </span>
-<span id="cb14-13"><a href="#cb14-13"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Female"</span>,<span class="st">"Male"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">colour =</span> participant_gender)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox Corpus"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="at">x =</span> <span class="st">"Vowel frontness"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  )<span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">scale_x_reverse</span>() <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">"Gender"</span>, </span>
+<span id="cb12-15"><a href="#cb12-15"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Female"</span>,<span class="st">"Male"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="legends" class="slide level2">
@@ -876,7 +885,7 @@ Elena Sheard
 <section id="remove-the-legend" class="slide level2">
 <h2>Remove the legend</h2>
 <ul>
-<li class="fragment">You can remove one of the legends if you have more than one with <code>guides(fill="none")</code> or <code>guides(color="none")</code>
+<li class="fragment">You can remove one of the legends if you have more than one with <code>guides(fill = "none")</code> or <code>guides(color = "none")</code>
 <ul>
 <li class="fragment">Need to specify the mapping you want to remove</li>
 </ul></li>
@@ -885,18 +894,26 @@ Elena Sheard
 <section id="removing-the-legend" class="slide level2">
 <h2>Removing the legend</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>,<span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>vowel, <span class="at">y=</span>F1_50,<span class="at">fill=</span>participant_age_category,<span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Height of NZE DRESS and KIT"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>      <span class="at">caption=</span><span class="st">"Data sfrom QuakeBox"</span>, </span>
-<span id="cb15-7"><a href="#cb15-7"></a>      <span class="at">x=</span><span class="st">"Vowel"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>)<span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">"Gender"</span>, </span>
-<span id="cb15-10"><a href="#cb15-10"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Women"</span>,<span class="st">"Men"</span>))<span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>, <span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">x =</span> vowel,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">y =</span> F1_50,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="at">fill =</span> participant_age_category,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="at">color =</span> participant_gender</span>
+<span id="cb13-8"><a href="#cb13-8"></a>  )) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="at">title =</span> <span class="st">"Height of NZE DRESS and KIT"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    <span class="at">caption =</span> <span class="st">"Data sfrom QuakeBox"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    <span class="at">x =</span> <span class="st">"Vowel"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>, <span class="st">"Men"</span>)) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="remove-the-legend-1" class="slide level2">
@@ -909,19 +926,27 @@ Elena Sheard
 <li class="fragment">If you want to remove <em>all</em> legends you can use <code>+ theme(legend.position="none")</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>,<span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>vowel, <span class="at">y=</span>F1_50,<span class="at">fill=</span>participant_age_category,<span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Height of NZE DRESS and KIT"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>      <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>, </span>
-<span id="cb16-7"><a href="#cb16-7"></a>      <span class="at">x=</span><span class="st">"Vowel"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>)<span class="sc">+</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name=</span><span class="st">"Gender"</span>, </span>
-<span id="cb16-10"><a href="#cb16-10"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Women"</span>,<span class="st">"Men"</span>))<span class="sc">+</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"DRESS"</span>, <span class="st">"KIT"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">x =</span> vowel,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="at">y =</span> F1_50,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="at">fill =</span> participant_age_category,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="at">color =</span> participant_gender</span>
+<span id="cb14-8"><a href="#cb14-8"></a>  )) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="at">title =</span> <span class="st">"Height of NZE DRESS and KIT"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13"></a>    <span class="at">x =</span> <span class="st">"Vowel"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>, <span class="st">"Men"</span>)) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="remove-all-legends-1" class="slide level2">
@@ -941,24 +966,27 @@ Elena Sheard
 <li class="fragment">You can break down your graph further by categorical variables with <code>facet_wrap()</code>, which automatically wraps graphs in a rectangle layout</li>
 <li class="fragment"><code>facet_wrap(~)</code> can take one or two arguments
 <ul>
-<li class="fragment">for one argument, it goes to the right of the ~ <code>facet_wrap(~column_e)</code></li>
-<li class="fragment">for two arguments, one goes on either side of the ~ <code>facet_wrap(column_e~column_f)</code></li>
+<li class="fragment">for one argument, it goes to the right of the ~ <code>facet_wrap(~ column_e)</code></li>
+<li class="fragment">for two arguments, one goes on either side of the ~ <code>facet_wrap(column_e ~ column_f)</code></li>
 </ul></li>
 </ul>
 </section>
 <section id="faceting-using-facet_wrap" class="slide level2">
 <h2>Faceting using facet_wrap()</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>vowel))<span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb17-4"><a href="#cb17-4"></a>       <span class="at">caption=</span><span class="st">"Data from Sydney Speaks"</span>,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb17-6"><a href="#cb17-6"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">facet_wrap</span>(participant_gender<span class="sc">~</span>participant_nz_ethnic)<span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F1_50, <span class="at">y =</span> F2_50, <span class="at">color =</span> vowel)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">caption =</span> <span class="st">"Data from Sydney Speaks"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="at">x =</span> <span class="st">"Vowel Backness"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">scale_x_reverse</span>() <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">facet_wrap</span>(participant_gender <span class="sc">~</span> participant_nz_ethnic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="faceting-using-facet_wrap-1" class="slide level2">
@@ -970,25 +998,29 @@ Elena Sheard
 <ul>
 <li class="fragment"><code>facet_grid()</code> can facet into columns or rows, or both
 <ul>
-<li class="fragment"><code>facet_grid(cols=vars(column_e))</code> will facet into columns based on this variable</li>
-<li class="fragment"><code>facet_grid(rows=vars(column_f))</code> will facet into rows based on this variable</li>
-<li class="fragment"><code>facet_grid(cols=vars(column_e), rows=vars(column_f))</code> will facet into rows and columns based on the two variables</li>
+<li class="fragment"><code>facet_grid(cols = vars(column_e))</code> will facet into columns based on this variable</li>
+<li class="fragment"><code>facet_grid(rows = vars(column_f))</code> will facet into rows based on this variable</li>
+<li class="fragment"><code>facet_grid(cols = vars(column_e), rows=vars(column_f))</code> will facet into rows and columns based on the two variables</li>
 </ul></li>
 </ul>
 </section>
 <section id="faceting-with-facet_grid-1" class="slide level2">
 <h2>Faceting with facet_grid()</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>vowel))<span class="sc">+</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb18-4"><a href="#cb18-4"></a>       <span class="at">caption=</span><span class="st">"Data from Sydney Speaks"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">facet_grid</span>(<span class="at">cols=</span><span class="fu">vars</span>(participant_gender),<span class="at">rows=</span><span class="fu">vars</span>(participant_nz_ethnic))<span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb18-10"><a href="#cb18-10"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F1_50, <span class="at">y =</span> F2_50, <span class="at">color =</span> vowel)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="at">caption =</span> <span class="st">"Data from Sydney Speaks"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="at">x =</span> <span class="st">"Vowel Backness"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">scale_x_reverse</span>() <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(participant_gender),</span>
+<span id="cb16-14"><a href="#cb16-14"></a>             <span class="at">rows =</span> <span class="fu">vars</span>(participant_nz_ethnic))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="faceting-with-facet_grid-2" class="slide level2">
@@ -1010,73 +1042,51 @@ Elena Sheard
 <section id="facet-default" class="slide level2">
 <h2>Facet: default</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>participant_gender))<span class="sc">+</span> </span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb19-6"><a href="#cb19-6"></a>       <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vowel)<span class="sc">+</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>, <span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> , <span class="fu">aes</span>(<span class="at">x =</span> F1_50, <span class="at">y =</span> F2_50, <span class="at">color =</span> participant_gender)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8"></a>    <span class="at">x =</span> <span class="st">"Vowel Backness"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> vowel) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="facet-default-1" class="slide level2">
 <h2>Facet: default</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>participant_gender))<span class="sc">+</span> </span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb20-6"><a href="#cb20-6"></a>       <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>,</span>
-<span id="cb20-7"><a href="#cb20-7"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vowel)<span class="sc">+</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/echo-%20false-1.png" width="960" class="r-stretch"></section>
+<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
 <section id="facet-free-scales" class="slide level2">
 <h2>Facet: free scales</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>participant_gender))<span class="sc">+</span> </span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb21-6"><a href="#cb21-6"></a>       <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb21-8"><a href="#cb21-8"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vowel, <span class="at">scales =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>, <span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> , <span class="fu">aes</span>(<span class="at">x =</span> F1_50, <span class="at">y =</span> F2_50, <span class="at">color =</span> participant_gender)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="at">title =</span> <span class="st">"NZE Monophthongs"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox"</span>,</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="at">x =</span> <span class="st">"Vowel Backness"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>    <span class="at">color =</span> <span class="st">"Vowel"</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> vowel, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="facet-free-scales-1" class="slide level2">
 <h2>Facet: free scales</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"START"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>F1_50,<span class="at">y=</span>F2_50,<span class="at">color=</span>participant_gender))<span class="sc">+</span> </span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"NZE Monophthongs"</span>, </span>
-<span id="cb22-6"><a href="#cb22-6"></a>       <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7"></a>       <span class="at">x=</span><span class="st">"Vowel Backness"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>       <span class="at">color=</span><span class="st">"Vowel"</span>)<span class="sc">+</span> </span>
-<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vowel, <span class="at">scales =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/echo-%20FALSE-1.png" width="960" class="r-stretch"></section>
+<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="mini-task-8-facet-it" class="slide level2">
 <h2>Mini-Task 8: Facet it!</h2>
 <ul>
@@ -1117,17 +1127,17 @@ Elena Sheard
 <section id="manually-selecting-colours-1" class="slide level2">
 <h2>Manually selecting colours</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>qb_vowels, <span class="fu">aes</span>(<span class="at">x=</span>F2_50,<span class="at">y=</span>F1_50, <span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"blue2"</span>,<span class="st">"chartreuse2"</span>))<span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> qb_vowels, <span class="fu">aes</span>(<span class="at">x =</span> F2_50, <span class="at">y =</span> F1_50, <span class="at">color =</span> participant_gender)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue2"</span>, <span class="st">"chartreuse2"</span>)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">scale_x_reverse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="manually-selecting-colours-2" class="slide level2">
 <h2>Manually selecting colours</h2>
 
-<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
 <section id="manually-selecting-colours-3" class="slide level2">
 <h2>Manually selecting colours</h2>
 <ul>
@@ -1146,25 +1156,25 @@ Elena Sheard
 <section id="manually-selecting-colours-4" class="slide level2">
 <h2>Manually selecting colours</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KIT"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>vowel, <span class="at">y=</span>F1_50,<span class="at">fill=</span>participant_nz_ethnic,<span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Realisation of vowel height by gender and ethnicity"</span>,</span>
-<span id="cb24-6"><a href="#cb24-6"></a>      <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>, </span>
-<span id="cb24-7"><a href="#cb24-7"></a>      <span class="at">x=</span><span class="st">"Generation"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>)<span class="sc">+</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
-<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#C70039"</span>,<span class="st">"#581845"</span>),<span class="at">name=</span><span class="st">"Gender"</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>,<span class="st">"Men"</span>))<span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#DAF7A6"</span>,<span class="st">"#FFC300"</span>,<span class="st">"#FF5733"</span>,<span class="st">"#C70039"</span>),</span>
-<span id="cb24-11"><a href="#cb24-11"></a>  <span class="at">name=</span><span class="st">"Ethnicity"</span>, </span>
-<span id="cb24-12"><a href="#cb24-12"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NZ European"</span>,<span class="st">"NZ Mixed"</span>,<span class="st">"Other"</span>)</span>
-<span id="cb24-13"><a href="#cb24-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KIT"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>vowel, <span class="at">y=</span>F1_50,<span class="at">fill=</span>participant_nz_ethnic,<span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Realisation of vowel height by gender and ethnicity"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6"></a>      <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>, </span>
+<span id="cb20-7"><a href="#cb20-7"></a>      <span class="at">x=</span><span class="st">"Generation"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>)<span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#C70039"</span>,<span class="st">"#581845"</span>),<span class="at">name=</span><span class="st">"Gender"</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>,<span class="st">"Men"</span>))<span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#DAF7A6"</span>,<span class="st">"#FFC300"</span>,<span class="st">"#FF5733"</span>,<span class="st">"#C70039"</span>),</span>
+<span id="cb20-11"><a href="#cb20-11"></a>  <span class="at">name=</span><span class="st">"Ethnicity"</span>, </span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NZ European"</span>,<span class="st">"NZ Mixed"</span>,<span class="st">"Other"</span>)</span>
+<span id="cb20-13"><a href="#cb20-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="manually-selecting-colours-5" class="slide level2">
 <h2>Manually selecting colours</h2>
 
-<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
 <section id="pre-existing-palettes" class="slide level2">
 <h2>Pre-existing palettes</h2>
 <ul>
@@ -1187,38 +1197,44 @@ Elena Sheard
 </li>
 <li class="fragment">Different packages have different palettes, I use RColorBrewer<br>
 </li>
-<li class="fragment">We replace the ‘manual’ in the previous code with <code>brewer</code>:
-<ul>
-<li class="fragment"><code>scale_color_brewer(palette="")</code><br>
-</li>
-<li class="fragment"><code>scale_fill_brewer(palette="")</code><br>
-</li>
-</ul></li>
+<li class="fragment">We replace the ‘manual’ in the previous code with <code>brewer</code> e.g., <code>scale_color_brewer(palette="")</code></li>
 <li class="fragment">You can find palette names in the link in the script</li>
 </ul>
 </section>
 <section id="pre-existing-palettes-2" class="slide level2">
 <h2>Pre-existing palettes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>qb_vowels <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KIT"</span>,<span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">ggplot</span>(<span class="at">data=</span>, <span class="fu">aes</span>(<span class="at">x=</span>vowel, <span class="at">y=</span>F1_50,<span class="at">fill=</span>participant_nz_ethnic,<span class="at">color=</span>participant_gender))<span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Realisation of vowel height by gender and ethnicity"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6"></a>      <span class="at">caption=</span><span class="st">"Data from QuakeBox"</span>, </span>
-<span id="cb25-7"><a href="#cb25-7"></a>      <span class="at">x=</span><span class="st">"Generation"</span>,<span class="at">y=</span><span class="st">"Vowel Height"</span>)<span class="sc">+</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>)<span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette=</span><span class="st">"RdGy"</span>,<span class="at">name=</span><span class="st">"Gender"</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>,<span class="st">"Men"</span>))<span class="sc">+</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Spectral"</span>,</span>
-<span id="cb25-11"><a href="#cb25-11"></a>  <span class="at">name=</span><span class="st">"Ethnicity"</span>, </span>
-<span id="cb25-12"><a href="#cb25-12"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NZ European"</span>,<span class="st">"NZ Mixed"</span>,<span class="st">"Other"</span>)</span>
-<span id="cb25-13"><a href="#cb25-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>qb_vowels <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(vowel <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KIT"</span>, <span class="st">"DRESS"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>         <span class="fu">aes</span>(</span>
+<span id="cb21-5"><a href="#cb21-5"></a>           <span class="at">x =</span> vowel,</span>
+<span id="cb21-6"><a href="#cb21-6"></a>           <span class="at">y =</span> F1_50,</span>
+<span id="cb21-7"><a href="#cb21-7"></a>           <span class="at">fill =</span> participant_nz_ethnic,</span>
+<span id="cb21-8"><a href="#cb21-8"></a>           <span class="at">color =</span> participant_gender</span>
+<span id="cb21-9"><a href="#cb21-9"></a>         )) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="at">title =</span> <span class="st">"Realisation of vowel height by gender and ethnicity"</span>,</span>
+<span id="cb21-13"><a href="#cb21-13"></a>    <span class="at">caption =</span> <span class="st">"Data from QuakeBox"</span>,</span>
+<span id="cb21-14"><a href="#cb21-14"></a>    <span class="at">x =</span> <span class="st">"Generation"</span>,</span>
+<span id="cb21-15"><a href="#cb21-15"></a>    <span class="at">y =</span> <span class="st">"Vowel Height"</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"RdGy"</span>,</span>
+<span id="cb21-19"><a href="#cb21-19"></a>                     <span class="at">name =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb21-20"><a href="#cb21-20"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Women"</span>, <span class="st">"Men"</span>)) <span class="sc">+</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a>  <span class="fu">scale_fill_brewer</span>(</span>
+<span id="cb21-22"><a href="#cb21-22"></a>    <span class="at">palette =</span> <span class="st">"Spectral"</span>,</span>
+<span id="cb21-23"><a href="#cb21-23"></a>    <span class="at">name =</span> <span class="st">"Ethnicity"</span>,</span>
+<span id="cb21-24"><a href="#cb21-24"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NZ European"</span>, <span class="st">"NZ Mixed"</span>, <span class="st">"Other"</span>)</span>
+<span id="cb21-25"><a href="#cb21-25"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pre-existing-palettes-3" class="slide level2">
 <h2>Pre-existing palettes</h2>
 
-<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
+<img data-src="NZLS_Workshop_ggplot2_files/figure-revealjs/unnamed-chunk-35-1.png" width="960" class="r-stretch"></section>
 <section id="mini-task-9-make-it-cute" class="slide level2">
 <h2>Mini-task 9: Make it cute</h2>
 <ul>
@@ -1239,13 +1255,14 @@ Elena Sheard
 <section id="save-your-figure-with-ggsave" class="slide level2">
 <h2>Save your figure with ggsave</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggsave</span>(</span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="at">filename =</span> <span class="st">"file_path.png"</span>,</span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="at">dpi =</span> <span class="dv">300</span>,</span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="at">width =</span> <span class="dv">500</span>,</span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="at">height =</span> <span class="dv">500</span>,</span>
-<span id="cb26-6"><a href="#cb26-6"></a>  <span class="at">units =</span> <span class="st">"px"</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="at">plot =</span> plot_object, </span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="at">filename =</span> <span class="st">"file_path.png"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">width =</span> <span class="dv">500</span>,</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">height =</span> <span class="dv">500</span>,</span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="at">units =</span> <span class="st">"px"</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="additional-options" class="slide level2">
@@ -1276,7 +1293,6 @@ Elena Sheard
 <li class="fragment">Construct the worst plot you possibly can, using everything I’ve gone over today</li>
 <li class="fragment">Export it as a png</li>
 <li class="fragment">Email it to me at elena.sheard@cantebury.ac.nz</li>
-<li class="fragment">Informal poll to decide the victor</li>
 </ul>
 </section>
 <section id="troubleshooting" class="slide level2">
@@ -1295,7 +1311,7 @@ Elena Sheard
 <a href="https://www.r-graph-gallery.com/ggplot2-package.html">R Graph Gallery</a><br>
 <a href="https://ggplot2-book.org/introduction.html">ggplot2: Elegant Graphics for Data Analysis</a></p>
 <h3 id="color-and-palette-generators">Color and palette generators</h3>
-<p><a href="https://coolors.co/984447-faa6ff-64a6bd-ffba49-1e1e24">Coolers</a> <a href="http://colormind.io/">Colormind</a> <a href="https://colors.muz.li/">Muzli</a></p>
+<p><a href="https://coolors.co/984447-faa6ff-64a6bd-ffba49-1e1e24">Coolers</a> <a href="http://colormind.io/">Colormind</a> <a href="https://colors.muz.li/">Muzli</a> <a href="https://venngage.com/tools/accessible-color-palette-generator">Venngage</a></p>
 
 <img src="images/NZILBB-small.svg" class="slide-logo r-stretch"><div class="footer footer-default">
 

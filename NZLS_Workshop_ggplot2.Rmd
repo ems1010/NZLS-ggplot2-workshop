@@ -1,6 +1,6 @@
 ---
-title: "Introduction to Data Visualisation"
-subtitle: "NZLS Workshop Day"
+title: "Introduction to Data Visualisation in R"
+subtitle: "NZLS Workshop Day, December 11 2024"
 author:
   name: "Elena Sheard"
   affiliation: "Te Kāhui Roro Reo | New Zealand Institute of Language, Brain and Behaviour <br/> Te Whare Wānanga o Waitaha | University of Canterbury"
@@ -54,9 +54,10 @@ qb_vowels <-read_rds(here('Data','qb_vowels.rds'))
 ## How it will work
 
 -   Go to https://github.com/ems1010/NZLS-ggplot2-workshop
-    -     Fork (if you know how) OR
-    -     Download as .zip folder `<> Code` button -\> `Download ZIP`
--  Unzip folder, open the file **NZLS-ggplot2-workshop.Rproj** in RStudio
+    -   Fork (if you know how) OR
+    -   Download as .zip folder from the `<> Code` button -\> `Download ZIP`
+-   Unzip folder, open the file **NZLS-ggplot2-workshop.Rproj** in
+    RStudio
     -   File -\> Open Project -\> Where you have saved the folder
 -   Contains everything we will need
 
@@ -87,11 +88,11 @@ qb_vowels <-read_rds(here('Data','qb_vowels.rds'))
 
 ## Using ggplot2
 
-```{r,echo=TRUE, eval=FALSE}
-install.packages("RColorBrewer") 
+```{r,echo = TRUE, eval = FALSE}
+install.packages("tidyverse", "here", "RColorBrewer")
 library(RColorBrewer)
 library(tidyverse)
-qb_vowels <-read_rds(here('Data','qb_vowels.rds')) 
+qb_vowels <- read_rds(here('Data', 'qb_vowels.rds')) 
 ```
 
 -   To use ggplot2, you need to:
@@ -155,23 +156,23 @@ qb_vowels <-read_rds(here('Data','qb_vowels.rds'))
 ## The Base Layer
 
 ```{r,eval=TRUE}
-ggplot(data=qb_vowels)
+ggplot(data = qb_vowels)
 ```
 
 ## ggplot2: Mapping
 
 -   Depends on what kind of graph you are after, but for *most* you will
     want to add **x and/or y axes**
--   Within `ggplot(data=qb_vowels)`, we need another function `aes()`
+-   Within `ggplot(data = qb_vowels)`, we need another function `aes()`
     within which you give the x and y axes so that:
-    -   ggplot(data=*dataframe*, aes(x=*column_a*, y=*column_b*)) 
+    -   `ggplot(data = *dataframe*, aes(x = *column_a*, y = *column_b*))` 
     -   The names you give for 'x' and 'y' are the **names of the
         columns in the dataframe you want to plot**
 
 ## ggplot2: Mapping
 
 ```{r, eval=TRUE}
-ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50))
 ```
 
 ## ggplot2: building a scatter plot
@@ -180,7 +181,7 @@ ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))
     continuous variables** on the x and y axes
 -   To turn this into a scatterplot, add `+ geom_point()` to the
     previous code
-    -   This tells ggplot2 that we want to build a scatter plot, with
+    -   This tells ggplot2 that we want to build a scatter plot (each data point represented by a 'point'), with
         the specified x and y axes
 -   When you add a new component to a graph, there must be a `+`
     connecting to the previous one
@@ -189,7 +190,7 @@ ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))
 ## Basic Scatter plot
 
 ```{r,eval=TRUE}
-ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))+
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50)) +
   geom_point()
 ```
 
@@ -206,8 +207,8 @@ ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))+
 
 ## Building a box plot
 
--   The basic `ggplot(data=, aes(x=,y=))` stays the same
-    -   Instead of `+geom_point()` we add `+geom_boxplot()`
+-   The basic `ggplot(data =, aes(x =,y =))` stays the same
+    -   Instead of `+ geom_point()` we add `+ geom_boxplot()`
 -   Box plots use:
     -   a **categorical** variable on the **x axis**
     -   a **continuous** variable on the **y axis**
@@ -215,7 +216,7 @@ ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50))+
 ## Basic box plot
 
 ```{r}
-ggplot(data=qb_vowels, aes(x=vowel,y=F1_50))+ 
+ggplot(data = qb_vowels, aes(x = vowel, y = F1_50)) +
   geom_boxplot()
 ```
 
@@ -228,7 +229,7 @@ ggplot(data=qb_vowels, aes(x=vowel,y=F1_50))+
 
 ## Building a density plot
 
--   The basic code is `ggplot(data=, aes(x=))`
+-   The basic code is `ggplot(data =, aes(x =))`
     -   This time we add `+geom_density()`
 -   Density plots use:
     -   a **single continuous** variable on the **x-axis**
@@ -237,7 +238,7 @@ ggplot(data=qb_vowels, aes(x=vowel,y=F1_50))+
 ## Basic density plot
 
 ```{r}
-ggplot(data=qb_vowels, aes(x=F1_50))+
+ggplot(data = qb_vowels, aes(x = F1_50)) +
   geom_density()
 ```
 
@@ -257,7 +258,7 @@ ggplot(data=qb_vowels, aes(x=F1_50))+
 -   Colour is a very easy way to add additional information
 -   We map colour to variables within the `aes()` function, after we
     have put in the x and y axes
-    -   `ggplot(data=data_frame, aes(x=columm_a,y=column_b,color=column_c))`
+    -   `ggplot(data = data_frame, aes(x = columm_a,y = column_b, color = column_c))`
 -   The same principle applies to shape and linetype
 
 ## Scatter Plot with Colour
@@ -271,8 +272,8 @@ ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50, color=vowel))+
 
 -   If your graph has shapes with lines (like boxplots and density
     plots), you can:
-    -   change the line colour with `color=column_c`
-    -   change the colour inside the lines with `fill=column_d`
+    -   change the line colour with `color = column_c`
+    -   change the colour inside the lines with `fill = column_d`
 
 ## Boxplot with colour
 
@@ -313,7 +314,7 @@ qb_vowels %>%
 
 -   The `+labs()` function lets you change the plot title, caption, x
     and y axes and the legend labels
-    -   `labs(title="Plot Title",caption="Plot Caption",x="column_a",y="column_b", color="column_c",fill="column_d")`
+    -   `labs(title = "Plot Title", caption = "Plot Caption",x = "column_a",y = "column_b", color = "column_c",fill = "column_d")`
 
 ## Changing our figure title
 
@@ -326,7 +327,9 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     x = "Vowel frontness",
     y = "Vowel Height",
     color = "Vowel"
-  )
+  ) +
+  scale_y_reverse() +
+  scale_x_reverse()
 ```
 
 ## Labels and Titles
@@ -340,7 +343,9 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     x = "Vowel frontness",
     y = "Vowel Height",
     color = "Vowel"
-  )
+  ) +
+  scale_y_reverse() +
+  scale_x_reverse()
 ```
 
 ## Mini-task 5: Change the Labels and Titles
@@ -348,15 +353,15 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
 -   Give your plot from Task 4 a new title!
 -   Try and change the labels of the x and y axes too
     -   Previous plot code
-        +`labs(title="Plot Title",caption="Plot Caption",x="column_a",y="column_b", color="column_c",fill="column_d")`
+        +`labs(title = "Plot Title", caption = "Plot Caption",x = "column_a",y = "column_b", color = "column_c",fill = "column_d")`
 
 ## Themes
 
 -   You can change the background of the chart
     -   Grey squares is the default
 -   Other options include:
-    -   `+theme_bw()`, `+theme_light()`, `+theme_dark()`,
-        `+theme_classic()`
+    -   `+ theme_bw()`, `+ theme_light()`, `+ theme_dark()`,
+        `+ theme_classic()`
 
 ## Chaning our theme
 
@@ -370,6 +375,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     y = "Vowel Height",
     color = "Vowel"
   )+
+  scale_y_reverse() +
+  scale_x_reverse() +
   theme_bw()
 ```
 
@@ -385,6 +392,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     y = "Vowel Height",
     color = "Vowel"
   )+
+  scale_y_reverse() +
+  scale_x_reverse() +
   theme_bw()
 ```
 
@@ -415,6 +424,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     color = "Vowel"
   )+
   theme_bw()+
+    scale_y_reverse() +
+  scale_x_reverse() +
   theme(legend.position = "left")
   
 ```
@@ -432,6 +443,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
     color = "Vowel"
   )+
   theme_bw()+
+    scale_y_reverse() +
+  scale_x_reverse() +
   theme(legend.position = "left")
   
 ```
@@ -439,8 +452,9 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = vowel)) +
 ## Altering the legend
 
 -   You can also alter the legend name and labels using:
-    -   `scale_color_discrete(name="",labels=c("",""))` and
-    -   `scale_fill_discrete(name="",labels=c("",""))`
+    -   `scale_color_discrete(name = " ", labels = c("",""))` and
+    -   `scale_fill_discrete(name = " ", labels = c("", ""))`
+- If this is something you have to do repeatedly, it's probably better to do some data processing before visualisation
 
 ## Altering our legend
 
@@ -455,6 +469,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = participant_gender))
     color = "Vowel"
   )+
   theme_bw()+
+  scale_x_reverse() +
+  scale_y_reverse() +
   theme(legend.position = "left")+
   scale_color_discrete(name="Gender", 
                        labels=c("Female","Male"))
@@ -473,6 +489,8 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = participant_gender))
     color = "Vowel"
   )+
   theme_bw()+
+  scale_x_reverse() +
+  scale_y_reverse() +
   theme(legend.position = "left")+
   scale_color_discrete(name="Gender", 
                        labels=c("Female","Male"))
@@ -482,22 +500,30 @@ ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, colour = participant_gender))
 ## Remove the legend
 
 -   You can remove one of the legends if you have more than one with
-    `guides(fill="none")` or `guides(color="none")`
+    `guides(fill = "none")` or `guides(color = "none")`
     -   Need to specify the mapping you want to remove
 
 ## Removing the legend
 
 ```{r,eval=FALSE, echo=TRUE}
-qb_vowels %>% 
-  filter(vowel %in% c("DRESS","KIT")) %>% 
-ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Height of NZE DRESS and KIT",
-      caption="Data sfrom QuakeBox", 
-      x="Vowel",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_discrete(name="Gender", 
-                       labels=c("Women","Men"))+
+qb_vowels %>%
+  filter(vowel %in% c("DRESS", "KIT")) %>%
+  ggplot(aes(
+    x = vowel,
+    y = F1_50,
+    fill = participant_age_category,
+    color = participant_gender
+  )) +
+  geom_boxplot() +
+  labs(
+    title = "Height of NZE DRESS and KIT",
+    caption = "Data sfrom QuakeBox",
+    x = "Vowel",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_discrete(name = "Gender",
+                       labels = c("Women", "Men")) +
   guides(fill = "none") +
   theme_bw()
 ```
@@ -505,16 +531,24 @@ ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gend
 ## Remove the legend
 
 ```{r,eval=TRUE, echo=FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("DRESS","KIT")) %>% 
-ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Height of NZE DRESS and KIT",
-      caption="Data from QuakeBox", 
-      x="Vowel",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_discrete(name="Gender", 
-                       labels=c("Women","Men"))+
+qb_vowels %>%
+  filter(vowel %in% c("DRESS", "KIT")) %>%
+  ggplot(aes(
+    x = vowel,
+    y = F1_50,
+    fill = participant_age_category,
+    color = participant_gender
+  )) +
+  geom_boxplot() +
+  labs(
+    title = "Height of NZE DRESS and KIT",
+    caption = "Data from QuakeBox",
+    x = "Vowel",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_discrete(name = "Gender",
+                       labels = c("Women", "Men")) +
   guides(fill = "none") +
   theme_bw()
   
@@ -526,38 +560,54 @@ ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gend
     `+ theme(legend.position="none")`
 
 ```{r,eval=FALSE, echo=TRUE}
-qb_vowels %>% 
-  filter(vowel %in% c("DRESS","KIT")) %>% 
-ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Height of NZE DRESS and KIT",
-      caption="Data from QuakeBox", 
-      x="Vowel",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_discrete(name="Gender", 
-                       labels=c("Women","Men"))+
+qb_vowels %>%
+  filter(vowel %in% c("DRESS", "KIT")) %>%
+  ggplot(aes(
+    x = vowel,
+    y = F1_50,
+    fill = participant_age_category,
+    color = participant_gender
+  )) +
+  geom_boxplot() +
+  labs(
+    title = "Height of NZE DRESS and KIT",
+    caption = "Data from QuakeBox",
+    x = "Vowel",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_discrete(name = "Gender",
+                       labels = c("Women", "Men")) +
   guides(fill = "none") +
-  theme_bw()+
-  theme(legend.position="none")
+  theme_bw() +
+  theme(legend.position = "none")
   
 ```
 
 ## Remove all legends
 
 ```{r,eval=TRUE, echo=FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("DRESS","KIT")) %>% 
-ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Height of NZE DRESS and KIT",
-      caption="Data from QuakeBox", 
-      x="Vowel",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_discrete(name="Gender", 
-                       labels=c("Women","Men"))+
+qb_vowels %>%
+  filter(vowel %in% c("DRESS", "KIT")) %>%
+  ggplot(aes(
+    x = vowel,
+    y = F1_50,
+    fill = participant_age_category,
+    color = participant_gender
+  )) +
+  geom_boxplot() +
+  labs(
+    title = "Height of NZE DRESS and KIT",
+    caption = "Data from QuakeBox",
+    x = "Vowel",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_discrete(name = "Gender",
+                       labels = c("Women", "Men")) +
   guides(fill = "none") +
-  theme_bw()+
-  theme(legend.position="none")
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 ## Mini-task 7: Change the Legend
@@ -572,77 +622,92 @@ ggplot(aes(x=vowel, y=F1_50,fill=participant_age_category,color=participant_gend
     layout
 -   `facet_wrap(~)` can take one or two arguments
     -   for one argument, it goes to the right of the \~
-        `facet_wrap(~column_e)`
+        `facet_wrap(~ column_e)`
     -   for two arguments, one goes on either side of the \~
-        `facet_wrap(column_e~column_f)`
+        `facet_wrap(column_e ~ column_f)`
 
 ## Faceting using facet_wrap()
 
 ```{r,eval=FALSE, echo=TRUE}
-ggplot(data=qb_vowels, aes(x=F1_50,y=F2_50,color=vowel))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from Sydney Speaks",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(participant_gender~participant_nz_ethnic)+
-  scale_y_reverse()+
-  scale_x_reverse()
+ggplot(data = qb_vowels, aes(x = F1_50, y = F2_50, color = vowel)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from Sydney Speaks",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  scale_y_reverse() +
+  scale_x_reverse() +
+  facet_wrap(participant_gender ~ participant_nz_ethnic)
 ```
 
 ## Faceting using facet_wrap()
 
 ```{r,eval=TRUE, echo=FALSE}
-ggplot(data=qb_vowels, aes(x=F1_50,y=F2_50,color=vowel))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from Sydney Speaks",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(participant_gender~participant_nz_ethnic)+
-  scale_y_reverse()+
-  scale_x_reverse()
+ggplot(data = qb_vowels, aes(x = F1_50, y = F2_50, color = vowel)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from Sydney Speaks",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  scale_y_reverse() +
+  scale_x_reverse() +
+  facet_wrap(participant_gender ~ participant_nz_ethnic)
 ```
 
 ## Faceting with facet_grid()
 
 -   `facet_grid()` can facet into columns or rows, or both
-    -   `facet_grid(cols=vars(column_e))` will facet into columns based
+    -   `facet_grid(cols = vars(column_e))` will facet into columns based
         on this variable
-    -   `facet_grid(rows=vars(column_f))` will facet into rows based on
+    -   `facet_grid(rows = vars(column_f))` will facet into rows based on
         this variable
-    -   `facet_grid(cols=vars(column_e), rows=vars(column_f))` will
+    -   `facet_grid(cols = vars(column_e), rows=vars(column_f))` will
         facet into rows and columns based on the two variables
 
 ## Faceting with facet_grid()
 
 ```{r,eval=FALSE, echo=TRUE}
-ggplot(data=qb_vowels, aes(x=F1_50,y=F2_50,color=vowel))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from Sydney Speaks",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_grid(cols=vars(participant_gender),rows=vars(participant_nz_ethnic))+
-  scale_y_reverse()+
-  scale_x_reverse()
+ggplot(data = qb_vowels, aes(x = F1_50, y = F2_50, color = vowel)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from Sydney Speaks",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  scale_y_reverse() +
+  scale_x_reverse() +
+  facet_grid(cols = vars(participant_gender),
+             rows = vars(participant_nz_ethnic))
+
 ```
 
 ## Faceting with facet_grid()
 
 ```{r,eval=TRUE, echo=FALSE}
-ggplot(data=qb_vowels, aes(x=F1_50,y=F2_50,color=vowel))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from Sydney Speaks",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_grid(cols=vars(participant_gender),rows=vars(participant_nz_ethnic))+
-  scale_y_reverse()+
+ggplot(data = qb_vowels, aes(x = F1_50, y = F2_50, color = vowel)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from Sydney Speaks",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  facet_grid(cols = vars(participant_gender),
+             rows = vars(participant_nz_ethnic)) +
+  scale_y_reverse() +
   scale_x_reverse()
 ```
 
@@ -657,68 +722,80 @@ ggplot(data=qb_vowels, aes(x=F1_50,y=F2_50,color=vowel))+
 ## Facet: default
 
 ```{r eval=FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("START","DRESS")) %>% 
-ggplot(data=, aes(x=F1_50,y=F2_50,color=participant_gender))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from QuakeBox",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(~vowel)+
-  scale_y_reverse()+
+qb_vowels %>%
+  filter(vowel %in% c("START", "DRESS")) %>%
+  ggplot(data = , aes(x = F1_50, y = F2_50, color = participant_gender)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from QuakeBox",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  facet_wrap(~ vowel) +
+  scale_y_reverse() +
   scale_x_reverse()
 ```
 
 ## Facet: default
 
-```{r echo: false}
-qb_vowels %>% 
-  filter(vowel %in% c("START","DRESS")) %>% 
-ggplot(data=, aes(x=F1_50,y=F2_50,color=participant_gender))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from QuakeBox",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(~vowel)+
+```{r echo = FALSE}
+qb_vowels %>%
+  filter(vowel %in% c("START", "DRESS")) %>%
+  ggplot(data = , aes(x = F1_50, y = F2_50, color = participant_gender)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from QuakeBox",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  facet_wrap( ~ vowel) +
+  scale_y_reverse() +
+  scale_x_reverse()
+```
+
+## Facet: free scales
+
+```{r eval=FALSE}
+qb_vowels %>%
+  filter(vowel %in% c("START", "DRESS")) %>%
+  ggplot(data = , aes(x = F1_50, y = F2_50, color = participant_gender)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from QuakeBox",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  facet_wrap( ~ vowel, scales = "free") +
   scale_y_reverse()+
   scale_x_reverse()
 ```
 
 ## Facet: free scales
 
-```{r eval=F}
-qb_vowels %>% 
-  filter(vowel %in% c("START","DRESS")) %>% 
-ggplot(data=, aes(x=F1_50,y=F2_50,color=participant_gender))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from QuakeBox",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(~vowel, scales = "free")+
-  scale_y_reverse()+
-  scale_x_reverse()
-```
-
-## Facet: free scales
-
-```{r echo: FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("START","DRESS")) %>% 
-ggplot(data=, aes(x=F1_50,y=F2_50,color=participant_gender))+ 
-  geom_point()+ 
-  labs(title="NZE Monophthongs", 
-       caption="Data from QuakeBox",
-       x="Vowel Backness",y="Vowel Height",
-       color="Vowel")+ 
-  theme_bw()+
-  facet_wrap(~vowel, scales = "free")+
-  scale_y_reverse()+
+```{r echo = FALSE}
+qb_vowels %>%
+  filter(vowel %in% c("START", "DRESS")) %>%
+  ggplot(data = , aes(x = F1_50, y = F2_50, color = participant_gender)) +
+  geom_point() +
+  labs(
+    title = "NZE Monophthongs",
+    caption = "Data from QuakeBox",
+    x = "Vowel Backness",
+    y = "Vowel Height",
+    color = "Vowel"
+  ) +
+  theme_bw() +
+  facet_wrap( ~ vowel, scales = "free") +
+  scale_y_reverse() +
   scale_x_reverse()
 ```
 
@@ -753,20 +830,20 @@ ggplot(data=, aes(x=F1_50,y=F2_50,color=participant_gender))+
 ## Manually selecting colours
 
 ```{r, eval=FALSE}
-ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50, color=participant_gender))+
-  geom_point()+
-  scale_color_manual(values=c("blue2","chartreuse2"))+
-  scale_y_reverse()+
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, color = participant_gender)) +
+  geom_point() +
+  scale_color_manual(values = c("blue2", "chartreuse2")) +
+  scale_y_reverse() +
   scale_x_reverse()
 ```
 
 ## Manually selecting colours
 
 ```{r,echo=FALSE}
-ggplot(data=qb_vowels, aes(x=F2_50,y=F1_50, color=participant_gender))+
-  geom_point()+
-  scale_color_manual(values=c("blue2","chartreuse2"))+
-  scale_y_reverse()+
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50, color = participant_gender)) +
+  geom_point() +
+  scale_color_manual(values = c("blue2", "chartreuse2")) +
+  scale_y_reverse() +
   scale_x_reverse()
 ```
 
@@ -815,9 +892,10 @@ ggplot(data=, aes(x=vowel, y=F1_50,fill=participant_nz_ethnic,color=participant_
 ```
 
 ## Pre-existing palettes
+
 -   You can assign multiple colours to an object to create a palette
-    - e.g.,     `my_palette <- c("#DAF7A6","#FFC300","#FF5733","#C70039")`
-- This object can be used as the `values` value
+    -   e.g., `my_palette <- c("#DAF7A6","#FFC300","#FF5733","#C70039")`
+-   This object can be used as the `values` value
     -   e.g., `scale_color_manual(values=my_palette)`
 
 ## Pre-existing palettes
@@ -827,44 +905,66 @@ ggplot(data=, aes(x=vowel, y=F1_50,fill=participant_nz_ethnic,color=participant_
 -   There are a lot of pre-existing palettes that you can add to your
     graph\
 -   Different packages have different palettes, I use RColorBrewer\
--   We replace the 'manual' in the previous code with `brewer`:
-    -   `scale_color_brewer(palette="")`\
-    -   `scale_fill_brewer(palette="")`\
+-   We replace the 'manual' in the previous code with `brewer` e.g., `scale_color_brewer(palette="")`
 -   You can find palette names in the link in the script
 
 ## Pre-existing palettes
 
 ```{r, eval=FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("KIT","DRESS")) %>% 
-ggplot(data=, aes(x=vowel, y=F1_50,fill=participant_nz_ethnic,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Realisation of vowel height by gender and ethnicity",
-      caption="Data from QuakeBox", 
-      x="Generation",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_brewer(palette="RdGy",name="Gender",labels = c("Women","Men"))+
-  scale_fill_brewer(palette="Spectral",
-  name="Ethnicity", 
-  labels = c("NZ European","NZ Mixed","Other")
+qb_vowels %>%
+  filter(vowel %in% c("KIT", "DRESS")) %>%
+  ggplot(data = ,
+         aes(
+           x = vowel,
+           y = F1_50,
+           fill = participant_nz_ethnic,
+           color = participant_gender
+         )) +
+  geom_boxplot() +
+  labs(
+    title = "Realisation of vowel height by gender and ethnicity",
+    caption = "Data from QuakeBox",
+    x = "Generation",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_brewer(palette = "RdGy",
+                     name = "Gender",
+                     labels = c("Women", "Men")) +
+  scale_fill_brewer(
+    palette = "Spectral",
+    name = "Ethnicity",
+    labels = c("NZ European", "NZ Mixed", "Other")
   )
 ```
 
 ## Pre-existing palettes
 
 ```{r, echo=FALSE}
-qb_vowels %>% 
-  filter(vowel %in% c("KIT","DRESS")) %>% 
-ggplot(data=, aes(x=vowel, y=F1_50,fill=participant_nz_ethnic,color=participant_gender))+
-  geom_boxplot()+
-  labs(title="Realisation of vowel height by gender and ethnicity",
-      caption="Data from QuakeBox", 
-      x="Generation",y="Vowel Height")+
-  theme(legend.position = "left")+
-  scale_color_brewer(palette="RdGy",name="Gender",labels = c("Women","Men"))+
-  scale_fill_brewer(palette="Spectral",
-  name="Ethnicity", 
-  labels = c("NZ European","NZ Mixed","Other")
+qb_vowels %>%
+  filter(vowel %in% c("KIT", "DRESS")) %>%
+  ggplot(data = ,
+         aes(
+           x = vowel,
+           y = F1_50,
+           fill = participant_nz_ethnic,
+           color = participant_gender
+         )) +
+  geom_boxplot() +
+  labs(
+    title = "Realisation of vowel height by gender and ethnicity",
+    caption = "Data from QuakeBox",
+    x = "Generation",
+    y = "Vowel Height"
+  ) +
+  theme(legend.position = "left") +
+  scale_color_brewer(palette = "RdGy",
+                     name = "Gender",
+                     labels = c("Women", "Men")) +
+  scale_fill_brewer(
+    palette = "Spectral",
+    name = "Ethnicity",
+    labels = c("NZ European", "NZ Mixed", "Other")
   )
 
 ```
@@ -886,6 +986,7 @@ ggplot(data=, aes(x=vowel, y=F1_50,fill=participant_nz_ethnic,color=participant_
 
 ```{r eval=FALSE}
 ggsave(
+  plot = plot_object, 
   filename = "file_path.png",
   dpi = 300,
   width = 500,
@@ -912,7 +1013,6 @@ ggsave(
     gone over today
 -   Export it as a png
 -   Email it to me at elena.sheard\@cantebury.ac.nz
--   Informal poll to decide the victor
 
 ## Troubleshooting
 
