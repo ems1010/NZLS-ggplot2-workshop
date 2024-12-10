@@ -1,0 +1,408 @@
+---
+title: "NZLS_Workshop_ggplot2_Activities"
+author: "Elena Sheard"
+format: html
+editor: visual
+---
+
+# Libraries and data
+
+```{r install-libraries}
+install.packages('here','RColorBrewer', 'tidyverse')
+```
+
+```{r load-libraries}
+library(tidyverse)
+library(here)
+library(RColorBrewer)
+```
+
+Load in the data we'll be using from a .rds file
+
+```{r load-data}
+qb_vowels <- here('Data','qb_vowels.rds')
+```
+
+The data has been loaded into an `object` that I've called `qb_vowels`. When I refer to the 'data frame', I am referring to this object `qb_vowels`
+
+# Tasks
+
+## One: make a scatterplot
+
+Make your own scatter plot by changing the *x* and *y* axes to different continuous variables from the data frame:
+
+-   duration
+
+-   F1_lob
+
+-   F2_lob
+
+-   speechRate
+
+-   tokenNumber
+
+-   word frequency (word_freq)
+
+-   time
+
+```{r task-scatterplot}
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50)) +
+  geom_point()
+```
+
+## Two: Make a box plot
+
+Make your own box plot by changing the y axis to a different continuous variable from the dataframe:
+
+-   duration
+
+-   F1_lob
+
+-   F2_lob
+
+-   speechRate
+
+-   tokenNumber
+
+And by changing the x axis to a different categorical variable from the dataframe:
+
+-   age
+
+-   community
+
+-   gender
+
+-   speaker
+
+```{r task-boxplot}
+ggplot(data = qb_vowels, aes(x = vowel, y = F1_50)) +
+  geom_boxplot()
+```
+
+## Three: make a density plot
+
+Make your own density plot by changing the x axis to a different continuous variable from the dataframe
+
+-   duration (vowel_duration)
+
+-   F1 midpoint (F1_50)
+
+-   F2 midpoint (F2_50)
+
+-   articulation rate (articulation_rate)
+
+-   word frequency (word_freq)
+
+-   amplitude
+
+```{r task-density}
+ggplot(data = qb_vowels, aes(x = F1_50)) +
+  geom_density()
+```
+
+## Four: Customise with colour
+
+-   Customise your previous plots with colour (copy and paste from above), or create new plots that use colour
+
+-   If you are after a challenge: filter/summarise data going into the plot first
+
+```{r scatter-colour}
+ggplot(data = qb_vowels, aes(x = vowel, y = F1_50)) +
+  geom_boxplot()
+```
+
+```{r boxplot-colour}
+ggplot(data = qb_vowels, aes(x = F2_50, y = F1_50)) +
+  geom_point()
+```
+
+```{r density-colour}
+ggplot(data = qb_vowels, aes(x = F1_50)) +
+  geom_density()
+```
+
+## Five: Change labels and titles
+
+-   Give your plots from Task 4 a new title! (Copy in code from above)
+
+-   Try and change the labels of the x and y axes too
+
+```{r scatter-labels}
+ggplot(data = qb_vowels, aes(x = , y = , color =)) +
+  geom_point() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  )
+```
+
+```{r boxplot-labels}
+ggplot(data = qb_vowels, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  )
+```
+
+```{r density-labels}
+ggplot(data = qb_vowels, aes(x = , color = , fill =)) +   geom_density() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  )
+```
+
+## Six: Change the theme
+
+-   Change the theme for one of the plots above
+
+```{r change-theme}
+ggplot(data = qb_vowels, aes(x = , color = , fill =)) +   geom_density() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  ) + theme_dark()
+```
+
+## Seven: change the legend
+
+-   Change the legend position for your previous plot
+
+    -   Options: "top", "bottom", "left" or "right"
+
+```{r change-legend-position}
+ggplot(data = ban, aes(x = , y = , color = )) +
+  geom_point() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  ) +
+  theme(legend.position = "")
+```
+
+-   Try changing the labels and title of the legend as well
+
+```{r change-colour-labels}
+ggplot(data = ban, aes(x = , y = , color =)) +
+  geom_point() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  ) +
+  scale_color_discrete(name = "",
+                       labels = c("", "")) # must have same number of 'levels' or categories as the variable in the data frame (e.g. two for gender)
+```
+
+```{r change-colour-fill-labels}
+ggplot(data = ban, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = "",
+    fill = ""
+  ) +
+  scale_fill_discrete(name = "",
+                      labels = c("", "")) + #must have same number of 'levels' or categories as the variable
+  scale_color_discrete(name = "",
+                       labels = c("", "")) #must have same number of 'levels' or categories as the variable
+```
+
+-   Try removing one legend
+
+```{r remove-one-legend}
+ggplot(data = ban, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = "",
+    fill = ""
+  ) +
+  guides(= "none") #put color or fill before the "="
+```
+
+-   Remove all legends
+
+```{r remove-all-legends}
+ggplot(data = ban, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = "",
+    fill = ""
+  ) +
+  theme(legend.position = "none")
+```
+
+## Eight: Facet it!
+
+-   Facet one of the graphs from Task 7 by one or two categorical variables
+
+```{r facet-wrap}
+ggplot(data = ban, aes(x = , y = , color =)) +
+  geom_point() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  ) +
+  theme(legend.position = "") +
+  facet_wrap(~)
+```
+
+```{r facet-grid}
+ggplot(data = ban, aes(x = , y = , color =)) +
+  geom_point() +
+  labs(
+    title = "",
+    caption = "",
+    x = "",
+    y = "",
+    color = ""
+  ) +
+  theme(legend.position = "") +
+  facet_grid(cols = vars(), rows = vars())
+```
+
+## Nine: Make it cute!
+
+-   Change the colours in a previous figure using either color names or hex codes, or a pre-existing palette from Brewer
+
+-   You can use the chunk below to a look at the list of colour names available in R
+
+```{r R-colours}
+colors()
+```
+
+-   you can also see the colours at this [link](https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/)
+
+-   [this link](https://htmlcolorcodes.com/) allows you to select a colour and gives you its hex code
+
+-   This [link](https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html) shows you the Brewer Palettes and their names
+
+-   **NOTE:** If you want to manually change the legend labels *and* customise colour, you need to include both the `name` and `labels` argument within the `scale_color_manual()` etc. functions
+
+```{r custom-colour-scatter}
+#manual colors
+ggplot(data = ban, aes(x = , y = , color = )) +
+  geom_point() +
+  scale_color_manual(values = c("", "")) #must have same number of 'levels' or categories as the variable
+
+#pre-existing palette
+ggplot(data = ban, aes(x = , y = , color = )) + geom_point() +
+  scale_color_brewer(palette = "")
+```
+
+```{r custom-colour-boxplot}
+#manual colors
+ggplot(data = ban, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  scale_color_manual(values = c("", "")) + #must have same number of 'levels' or categories as the variable
+  scale_fill_manual(values = c("", "")) #must have same number of 'levels' or categories as the variable
+
+#pre-existing palette
+ggplot(data = ban, aes(
+  x = ,
+  y = ,
+  color = ,
+  fill =
+)) +
+  geom_boxplot() +
+  scale_color_brewer(palette = "") +
+  scale_fill_brewer(palette = "")
+```
+
+```{r custom-colour-density}
+#manual colors
+ggplot(data = ban, aes(x = , color = , fill = )) +
+  geom_density +
+  scale_color_manual(values = c("", "")) +  #must have same number of 'levels' or categories as the variable
+  scale_fill_manual(values = c("", ""))  #must have same number of 'levels' or categories as the variable
+
+#pre-existing palette
+ggplot(data = ban, aes(x = , color = , fill = )) +
+  geom_density +
+  scale_color_brewer(palette = "") +
+  scale_fill_brewer(palette = "")
+```
+
+## Ten: Make it ugly!
+
+\- Construct the worst plot you possibly can, using as much from today as you can
+
+\- Export it as a png using ggsave below
+
+\- Email it to me at elena.sheard\@cantebury.ac.nz
+
+```{r worst-plot-possible}
+
+```
+
+# Save outputs
+
+-   ggsave will either save the most recently made figure, or you can specify the plot (remember to assign it to an object first, then include the plot
+
+```{r save-plot}
+ggsave(
+  plot = figure_object, # change to your figure object
+  filename = "file_path.png" # update file name
+  dpi = 300,
+  width = 500,
+  height = 500,
+  units = "px"
+)
+```
