@@ -933,3 +933,4 @@ Analysis](https://ggplot2-book.org/introduction.html)
 
 [Coolers](https://coolors.co/984447-faa6ff-64a6bd-ffba49-1e1e24)
 [Colormind](http://colormind.io/) [Muzli](https://colors.muz.li/)
+[Venngage](https://venngage.com/tools/accessible-color-palette-generator)

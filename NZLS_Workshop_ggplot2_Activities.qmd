@@ -329,6 +329,12 @@ colors()
 
 -   This [link](https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html) shows you the Brewer Palettes and their names
 
+-   Thinking about accessibility is always good too - I like to use the following two tools:
+
+    -   [Venngage](https://venngage.com/tools/accessible-color-palette-generator) accessible palette generator
+
+    -   David Nichol's [colour comparison tool](https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40)
+
 -   **NOTE:** If you want to manually change the legend labels *and* customise colour, you need to include both the `name` and `labels` argument within the `scale_color_manual()` etc. functions
 
 ```{r custom-colour-scatter}
