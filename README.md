@@ -1,4 +1,4 @@
-# NZLS-ggplot2-workshop
+# NZLS ggplot2 workshop
 
 This project contains the slides and activity code for an Introduction to Data Visualisation workshop run as part of the 2024 New Zealand Linguistic Society conference at the University of Canterbury. 
 
